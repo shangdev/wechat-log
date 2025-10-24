@@ -5,20 +5,23 @@ const (
 )
 
 type ServerConfig struct {
-	Type        string   `mapstructure:"type"`
-	Platform    string   `mapstructure:"platform"`
-	Version     int      `mapstructure:"version"`
-	FullVersion string   `mapstructure:"full_version"`
-	DataDir     string   `mapstructure:"data_dir"`
-	DataKey     string   `mapstructure:"data_key"`
-	ImgKey      string   `mapstructure:"img_key"`
-	WorkDir     string   `mapstructure:"work_dir"`
-	HTTPAddr    string   `mapstructure:"http_addr"`
-	AutoDecrypt bool     `mapstructure:"auto_decrypt"`
-	Webhook     *Webhook `mapstructure:"webhook"`
+	Type               string   `mapstructure:"type"`
+	Platform           string   `mapstructure:"platform"`
+	Version            int      `mapstructure:"version"`
+	FullVersion        string   `mapstructure:"full_version"`
+	DataDir            string   `mapstructure:"data_dir"`
+	DataKey            string   `mapstructure:"data_key"`
+	ImgKey             string   `mapstructure:"img_key"`
+	WorkDir            string   `mapstructure:"work_dir"`
+	HTTPAddr           string   `mapstructure:"http_addr"`
+	AutoDecrypt        bool     `mapstructure:"auto_decrypt"`
+	SaveDecryptedMedia bool     `mapstructure:"save_decrypted_media"`
+	Webhook            *Webhook `mapstructure:"webhook"`
 }
 
-var ServerDefaults = map[string]any{}
+var ServerDefaults = map[string]any{
+	"save_decrypted_media": true,
+}
 
 func (c *ServerConfig) GetDataDir() string {
 	return c.DataDir
@@ -57,4 +60,8 @@ func (c *ServerConfig) GetHTTPAddr() string {
 
 func (c *ServerConfig) GetWebhook() *Webhook {
 	return c.Webhook
+}
+
+func (c *ServerConfig) GetSaveDecryptedMedia() bool {
+	return c.SaveDecryptedMedia
 }

@@ -28,6 +28,7 @@ type Service struct {
 type Config interface {
 	GetHTTPAddr() string
 	GetDataDir() string
+	GetSaveDecryptedMedia() bool
 }
 
 func NewService(conf Config, db *database.Service) *Service {

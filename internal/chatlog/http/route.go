@@ -11,6 +11,7 @@ import (
 	"strings"
 
 	"github.com/gin-gonic/gin"
+	"github.com/rs/zerolog/log"
 
 	"github.com/sjzar/chatlog/internal/errors"
 	"github.com/sjzar/chatlog/pkg/util"
@@ -396,6 +397,11 @@ func (s *Service) HandleDatFile(c *gin.Context, path string) {
 		return
 	}
 
+	// Save decrypted file to local disk
+	if s.conf.GetSaveDecryptedMedia() {
+		s.saveDecryptedFile(path, out, ext)
+	}
+
 	switch ext {
 	case "jpg", "jpeg":
 		c.Data(http.StatusOK, "image/jpeg", out)
@@ -420,4 +426,32 @@ func (s *Service) HandleVoice(c *gin.Context, data []byte) {
 		return
 	}
 	c.Data(http.StatusOK, "audio/mp3", out)
+}
+
+// saveDecryptedFile saves the decrypted media file to local disk
+func (s *Service) saveDecryptedFile(datPath string, data []byte, ext string) {
+	// Generate target file path: replace .dat with actual extension
+	outputPath := strings.TrimSuffix(datPath, filepath.Ext(datPath)) + "." + ext
+
+	// Check if file already exists to avoid duplicate writes
+	if _, err := os.Stat(outputPath); err == nil {
+		return
+	}
+
+	// Write file
+	if err := os.WriteFile(outputPath, data, 0644); err != nil {
+		log.Error().
+			Err(err).
+			Str("dat_path", datPath).
+			Str("output_path", outputPath).
+			Msg("Failed to save decrypted file")
+		return
+	}
+
+	log.Debug().
+		Str("dat_path", datPath).
+		Str("output_path", outputPath).
+		Str("format", ext).
+		Int("size", len(data)).
+		Msg("Decrypted file saved successfully")
 }

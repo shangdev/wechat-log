@@ -185,6 +185,11 @@ func (c *Context) GetWebhook() *conf.Webhook {
 	return c.conf.Webhook
 }
 
+func (c *Context) GetSaveDecryptedMedia() bool {
+	// Default to true for now, can be made configurable later
+	return true
+}
+
 func (c *Context) SetHTTPEnabled(enabled bool) {
 	c.mu.Lock()
 	defer c.mu.Unlock()
