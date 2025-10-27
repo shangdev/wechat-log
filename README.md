@@ -1,15 +1,8 @@
 <div align="center">
 
-![chatlog](https://github.com/user-attachments/assets/e085d3a2-e009-4463-b2fd-8bd7df2b50c3)
+<img width="959" height="509" alt="image" src="https://github.com/user-attachments/assets/d28a8568-e75f-48f4-bfef-b12dbcfc3886" />
 
-_聊天记录工具，帮助大家轻松使用自己的聊天数据_
-
-[![ImgMCP](https://cdn.imgmcp.com/imgmcp-logo-small.png)](https://imgmcp.com)
-
-[![Go Report Card](https://goreportcard.com/badge/github.com/sjzar/chatlog)](https://goreportcard.com/report/github.com/sjzar/chatlog)
-[![GoDoc](https://godoc.org/github.com/sjzar/chatlog?status.svg)](https://godoc.org/github.com/sjzar/chatlog)
-[![GitHub release](https://img.shields.io/github/release/sjzar/chatlog.svg)](https://github.com/sjzar/chatlog/releases)
-[![GitHub license](https://img.shields.io/github/license/sjzar/chatlog.svg)](https://github.com/sjzar/chatlog/blob/main/LICENSE)
+_聊天记录工具，帮助大家轻松使用自己的聊天数据_，将chatlog发扬光大
 
 
 </div>
