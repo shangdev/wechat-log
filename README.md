@@ -1,6 +1,12 @@
 <div align="center">
 
-<img width="959" height="509" alt="image" src="https://github.com/user-attachments/assets/d28a8568-e75f-48f4-bfef-b12dbcfc3886" />
+<img width="955" height="488" alt="image" src="https://github.com/user-attachments/assets/d4654964-db05-4ad1-8ef1-7ed115122510" />
+
+___图片CDN配置_
+
+<img width="953" height="373" alt="image" src="https://github.com/user-attachments/assets/ac52d90b-57af-4d6f-b0a9-d4e32eab394f" />
+
+
 
 _聊天记录工具，帮助大家轻松使用自己的聊天数据_，将chatlog发扬光大
 
