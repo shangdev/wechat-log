@@ -3,6 +3,7 @@ package model
 import (
 	"encoding/xml"
 	"fmt"
+	"strconv"
 	"strings"
 	"time"
 
@@ -106,6 +107,7 @@ const (
 )
 
 type Message struct {
+	MsgSvrID   int64     			  `json:"msgSvrID,string"`	  // 消息 ID
 	Version    string                 `json:"-"`                  // 消息版本，内部判断
 	Seq        int64                  `json:"seq"`                // 消息序号，10位时间戳 + 3位序号
 	Time       time.Time              `json:"time"`               // 消息创建时间，10位时间戳
@@ -224,7 +226,15 @@ func (m *Message) ParseMediaInfo(data string) error {
 			if msg.App.ReferMsg == nil {
 				break
 			}
+
+			svrIDStr := msg.App.ReferMsg.SvrID
+			svrIDInt, err := strconv.ParseInt(svrIDStr, 10, 64)
+			if err != nil {
+				svrIDInt = 0
+			}
+
 			subMsg := &Message{
+				MsgSvrID:   svrIDInt,
 				Type:       int64(msg.App.ReferMsg.Type),
 				Time:       time.Unix(msg.App.ReferMsg.CreateTime, 0),
 				Sender:     msg.App.ReferMsg.ChatUsr,

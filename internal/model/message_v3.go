@@ -40,7 +40,7 @@ import (
 // BytesTrans BLOB
 // )
 type MessageV3 struct {
-	MsgSvrID        int64  `json:"MsgSvrID"`        // 消息 ID
+	MsgSvrID        int64  `json:"MsgSvrID,string"` // 消息 ID
 	Sequence        int64  `json:"Sequence"`        // 消息序号，10位时间戳 + 3位序号
 	CreateTime      int64  `json:"CreateTime"`      // 消息创建时间，10位时间戳
 	StrTalker       string `json:"StrTalker"`       // 聊天对象，微信 ID or 群 ID
@@ -55,6 +55,7 @@ type MessageV3 struct {
 func (m *MessageV3) Wrap() *Message {
 
 	_m := &Message{
+		MsgSvrID:   m.MsgSvrID,
 		Seq:        m.Sequence,
 		Time:       time.Unix(m.CreateTime, 0),
 		Talker:     m.StrTalker,

@@ -47,6 +47,7 @@ type MessageV4 struct {
 func (m *MessageV4) Wrap(talker string) *Message {
 
 	_m := &Message{
+		MsgSvrID:   m.ServerID,
 		Seq:        m.SortSeq,
 		Time:       time.Unix(m.CreateTime, 0),
 		Talker:     talker,

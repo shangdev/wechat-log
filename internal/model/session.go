@@ -11,6 +11,7 @@ type Session struct {
 	NickName string    `json:"nickName"`
 	Content  string    `json:"content"`
 	NTime    time.Time `json:"nTime"`
+	MsgSvrID int64     `json:"msgSvrID,string"`
 }
 
 // CREATE TABLE Session(
